@@ -1,4 +1,4 @@
-    // Önce tüm elementleri kontrol edelim
+        // Önce tüm elementleri kontrol edelim
         console.log('=== DEBUGGING START ===');
         
         const skillItems = document.querySelectorAll('.skills-list li');
@@ -48,15 +48,50 @@
             });
         });
 
-        // Main content area'dan çıkıldığında reset yap
-        if (mainContent) {
-            mainContent.addEventListener('mouseleave', function() {
-                console.log('>>> Main content LEAVE');
-                resetTimeout = setTimeout(() => {
-                    console.log('>>> Executing RESET');
+        // Sidebar'dan çıkıldığında - sol tarafa gidildiğinde
+        if (sidebar) {
+            sidebar.addEventListener('mouseleave', function(e) {
+                console.log('>>> Sidebar LEAVE');
+                // Sadece sol tarafa gidiyorsa reset yap
+                const sidebarRect = sidebar.getBoundingClientRect();
+                if (e.clientX < sidebarRect.left) {
+                    console.log('>>> Mouse went LEFT, resetting');
                     resetView();
                     currentSkill = null;
+                }
+            });
+        }
+
+        // Content area'dan çıkıldığında
+        if (contentArea) {
+            contentArea.addEventListener('mouseleave', function(e) {
+                console.log('>>> Content area LEAVE');
+                resetTimeout = setTimeout(() => {
+                    // Eğer sidebar'a geri dönmediyse reset yap
+                    if (!sidebar.matches(':hover')) {
+                        console.log('>>> Resetting from content area');
+                        resetView();
+                        currentSkill = null;
+                    }
                 }, 100);
+            });
+        }
+
+        // Main content area'dan çıkıldığında reset yap (yukarı/aşağı)
+        if (mainContent) {
+            mainContent.addEventListener('mouseleave', function(e) {
+                console.log('>>> Main content LEAVE');
+                const mainRect = mainContent.getBoundingClientRect();
+                
+                // Yukarı veya aşağı çıkıldıysa reset yap
+                if (e.clientY < mainRect.top || e.clientY > mainRect.bottom) {
+                    console.log('>>> Mouse went UP or DOWN, resetting');
+                    resetTimeout = setTimeout(() => {
+                        console.log('>>> Executing RESET');
+                        resetView();
+                        currentSkill = null;
+                    }, 100);
+                }
             });
 
             // Main content area'ya girildiğinde
