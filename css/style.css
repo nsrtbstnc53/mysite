@@ -1,4 +1,4 @@
- * {
+  * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -69,6 +69,17 @@
             grid-template-columns: 1fr 2fr;
             gap: 30px;
             margin-bottom: 30px;
+            position: relative;
+        }
+
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
         }
 
         .sidebar, .content-area {
@@ -104,10 +115,16 @@
             color: white;
             border-radius: 8px;
             transition: transform 0.3s ease;
+            cursor: pointer;
+            position: relative;
         }
 
         .skills-list li:hover {
             transform: translateX(10px);
+        }
+
+        .skills-list:hover li:not(:hover) {
+            opacity: 0.5;
         }
 
         .languages-list {
@@ -128,12 +145,116 @@
             background: #f8f9fa;
             border-radius: 10px;
             border-left: 5px solid #764ba2;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item.hidden {
+            display: none;
+        }
+
+        section h2 {
+            transition: opacity 0.3s ease;
+        }
+
+        section.experience-section.hidden {
+            display: none;
         }
 
         .experience-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-catalog {
+            display: none;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-catalog.active {
+            display: grid !important;
+            opacity: 1;
+            animation: fadeInCatalog 0.4s ease;
+        }
+
+        @keyframes fadeInCatalog {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .catalog-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .catalog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .catalog-card h3 {
+            color: #667eea;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .catalog-card p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .catalog-card ul {
+            margin-top: 10px;
+            margin-left: 15px;
+            color: #666;
+            font-size: 0.85em;
+        }
+
+        .catalog-card ul li {
+            margin-bottom: 5px;
+        }
+
+        .skill-catalog[data-skill="abap"] {
+            display: none;
+        }
+
+        .skills-list li[data-skill="abap"]:hover ~ .content-area .skill-catalog[data-skill="abap"],
+        .sidebar:has(.skills-list li[data-skill="abap"]:hover) ~ .content-area .skill-catalog[data-skill="abap"] {
+            display: grid !important;
+        }
+
+        .skills-list li[data-skill="rap"]:hover ~ .content-area .skill-catalog[data-skill="rap"],
+        .sidebar:has(.skills-list li[data-skill="rap"]:hover) ~ .content-area .skill-catalog[data-skill="rap"] {
+            display: grid !important;
+        }
+
+        .skills-list li[data-skill="odata"]:hover ~ .content-area .skill-catalog[data-skill="odata"],
+        .sidebar:has(.skills-list li[data-skill="odata"]:hover) ~ .content-area .skill-catalog[data-skill="odata"] {
+            display: grid !important;
+        }
+
+        .skills-list li[data-skill="alv"]:hover ~ .content-area .skill-catalog[data-skill="alv"],
+        .sidebar:has(.skills-list li[data-skill="alv"]:hover) ~ .content-area .skill-catalog[data-skill="alv"] {
+            display: grid !important;
+        }
+
+        .skills-list li[data-skill="forms"]:hover ~ .content-area .skill-catalog[data-skill="forms"],
+        .sidebar:has(.skills-list li[data-skill="forms"]:hover) ~ .content-area .skill-catalog[data-skill="forms"] {
+            display: grid !important;
         }
 
         .company-name {
