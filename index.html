@@ -233,11 +233,11 @@
                 <section>
                     <h2>Skills</h2>
                     <ul class="skills-list">
-                        <li>ABAP / OO ABAP</li>
-                        <li>RAP / ABAP Cloud</li>
-                        <li>OData / CDS</li>
-                        <li>ALV / SALV</li>
-                        <li>Smartforms / Adobe</li>
+                        <li data-skill="abap">ABAP / OO ABAP</li>
+                        <li data-skill="rap">RAP / ABAP Cloud</li>
+                        <li data-skill="odata">OData / CDS</li>
+                        <li data-skill="alv">ALV / SALV</li>
+                        <li data-skill="forms">Smartforms / Adobe</li>
                     </ul>
                 </section>
 
@@ -251,10 +251,210 @@
             </aside>
 
             <main class="content-area">
-                <section>
+                <!-- ABAP / OO ABAP Catalog -->
+                <div class="skill-catalog" data-skill="abap" style="z-index: 10;">
+                    <div class="catalog-card">
+                        <h3>Object-Oriented Programming</h3>
+                        <p>Advanced OOP concepts implementation</p>
+                        <ul>
+                            <li>Classes & Interfaces</li>
+                            <li>Inheritance & Polymorphism</li>
+                            <li>Design Patterns</li>
+                        </ul>
+                    </div>
+                    <div class="catalog-card">
+                        <h3>Classical ABAP</h3>
+                        <p>Core ABAP development techniques</p>
+                        <ul>
+                            <li>Reports & Module Pool</li>
+                            <li>Database Operations</li>
+                            <li>Performance Optimization</li>
+                        </ul>
+                    </div>
+                    <div class="catalog-card">
+                        <h3>ALV Programming</h3>
+                        <p>Advanced list viewer implementations</p>
+                        <ul>
+                            <li>Grid & Tree Displays</li>
+                            <li>Interactive Reports</li>
+                            <li>Custom Functions</li>
+                        </ul>
+                    </div>
+                    <div class="catalog-card">
+                        <h3>Enhancement Framework</h3>
+                        <p>SAP standard enhancement techniques</p>
+                        <ul>
+                            <li>BAdI Implementation</li>
+                            <li>User Exits</li>
+                            <li>Implicit Enhancement</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- RAP / ABAP Cloud Catalog -->
+                <div class="skill-catalog" data-skill="rap">
+                    <div class="catalog-card">
+                        <h3>RESTful Services</h3>
+                        <p>Modern API development with RAP</p>
+                        <ul>
+                            <li>Business Object Design</li>
+                            <li>Behavior Implementation</li>
+                            <li>Validation & Actions</li>
+                        </ul>
+                    </div>
+                    <div class="catalog-card">
+                        <h3>Fiori Elements</h3>
+                        <p>UI generation and customization</p>
+                        <ul>
+                            <li>List Reports</li>
+                            <li>Object Pages</li>
+                            <li>Annotations</li>
+                        </ul>
+                    </div>
+                    <div class="catalog-card">
+                        <h3>ABAP Cloud</h3>
+                        <p>Cloud-ready development practices</p>
+                        <ul>
+                            <li>Released APIs</li>
+                            <li>Tier-1 Extensions</li>
+                            <li>Clean Core Principles</li>
+                        </ul>
+                    </div>
+                    <div class="catalog-card">
+                        <h3>BTP Integration</h3>
+                        <p>SAP Business Technology Platform</p>
+                        <ul>
+                            <li>Cloud Services</li>
+                            <li>API Management</li>
+                            <li>Event-Driven Architecture</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- OData Catalog -->
+                <div class="skill-catalog" data-skill="odata">
+                    <div class="catalog-card">
+                        <h3>OData Services</h3>
+                        <p>RESTful web service development</p>
+                        <ul>
+                            <li>CRUD Operations</li>
+                            <li>Deep Insert/Update</li>
+                            <li>Function Imports</li>
+                        </ul>
+                    </div>
+                    <div class="catalog-card">
+                        <h3>CDS Views</h3>
+                        <p>Core Data Services modeling</p>
+                        <ul>
+                            <li>Basic & Composite Views</li>
+                            <li>Associations & Joins</li>
+                            <li>Annotations</li>
+                        </ul>
+                    </div>
+                    <div class="catalog-card">
+                        <h3>Performance Tuning</h3>
+                        <p>Query optimization techniques</p>
+                        <ul>
+                            <li>CDS View Optimization</li>
+                            <li>Indexed Access</li>
+                            <li>Buffer Management</li>
+                        </ul>
+                    </div>
+                    <div class="catalog-card">
+                        <h3>API Development</h3>
+                        <p>Integration layer implementation</p>
+                        <ul>
+                            <li>External System Integration</li>
+                            <li>Authentication & Security</li>
+                            <li>Error Handling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ALV Catalog -->
+                <div class="skill-catalog" data-skill="alv">
+                    <div class="catalog-card">
+                        <h3>ALV Grid</h3>
+                        <p>Standard grid display programming</p>
+                        <ul>
+                            <li>Field Catalog Setup</li>
+                            <li>Layout Variants</li>
+                            <li>Sorting & Filtering</li>
+                        </ul>
+                    </div>
+                    <div class="catalog-card">
+                        <h3>SALV Framework</h3>
+                        <p>Simple ALV implementation</p>
+                        <ul>
+                            <li>Table & Grid Display</li>
+                            <li>Event Handling</li>
+                            <li>Custom Functions</li>
+                        </ul>
+                    </div>
+                    <div class="catalog-card">
+                        <h3>Interactive Reports</h3>
+                        <p>User interaction features</p>
+                        <ul>
+                            <li>Hotspot Clicks</li>
+                            <li>Context Menus</li>
+                            <li>Drill-Down Reports</li>
+                        </ul>
+                    </div>
+                    <div class="catalog-card">
+                        <h3>Advanced Features</h3>
+                        <p>Complex ALV implementations</p>
+                        <ul>
+                            <li>Hierarchical Displays</li>
+                            <li>Editable ALVs</li>
+                            <li>Export Functions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Forms Catalog -->
+                <div class="skill-catalog" data-skill="forms">
+                    <div class="catalog-card">
+                        <h3>SmartForms</h3>
+                        <p>Dynamic form generation</p>
+                        <ul>
+                            <li>Template Design</li>
+                            <li>Window Management</li>
+                            <li>Multi-language Support</li>
+                        </ul>
+                    </div>
+                    <div class="catalog-card">
+                        <h3>Adobe Forms</h3>
+                        <p>Interactive PDF development</p>
+                        <ul>
+                            <li>Layout Design</li>
+                            <li>Interface Development</li>
+                            <li>Dynamic Forms</li>
+                        </ul>
+                    </div>
+                    <div class="catalog-card">
+                        <h3>Print Programs</h3>
+                        <p>Backend logic implementation</p>
+                        <ul>
+                            <li>Data Selection</li>
+                            <li>Logic Processing</li>
+                            <li>Output Control</li>
+                        </ul>
+                    </div>
+                    <div class="catalog-card">
+                        <h3>Output Management</h3>
+                        <p>Document distribution setup</p>
+                        <ul>
+                            <li>Print Configuration</li>
+                            <li>Email Integration</li>
+                            <li>Archive Management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <section class="experience-section">
                     <h2>Work Experience</h2>
                     
-                    <div class="experience-item">
+                    <div class="experience-item" data-skills="abap odata alv">
                         <div class="company-name">Azercell – Azerbaijan</div>
                         <div class="date">Apr 2025 – Jan 2026</div>
                         <ul>
@@ -263,7 +463,7 @@
                         </ul>
                     </div>
 
-                    <div class="experience-item">
+                    <div class="experience-item" data-skills="rap abap">
                         <div class="company-name">Ghitha – Dubai</div>
                         <div class="date">Jun 2025 – Nov 2025</div>
                         <ul>
@@ -272,7 +472,7 @@
                         </ul>
                     </div>
 
-                    <div class="experience-item">
+                    <div class="experience-item" data-skills="rap odata abap">
                         <div class="company-name">GBM – Dubai</div>
                         <div class="date">Apr 2024 – Oct 2025</div>
                         <ul>
@@ -281,7 +481,7 @@
                         </ul>
                     </div>
 
-                    <div class="experience-item">
+                    <div class="experience-item" data-skills="rap abap">
                         <div class="company-name">Nuh</div>
                         <div class="date">Apr 2024 – Nov 2025</div>
                         <ul>
@@ -290,7 +490,7 @@
                         </ul>
                     </div>
 
-                    <div class="experience-item">
+                    <div class="experience-item" data-skills="abap alv">
                         <div class="company-name">Anadolu Motor</div>
                         <div class="date">Jan 2024 – Apr 2024</div>
                         <ul>
@@ -298,7 +498,7 @@
                         </ul>
                     </div>
 
-                    <div class="experience-item">
+                    <div class="experience-item" data-skills="odata abap">
                         <div class="company-name">Sisecam</div>
                         <div class="date">Mar 2023 – Jan 2024</div>
                         <ul>
@@ -306,7 +506,7 @@
                         </ul>
                     </div>
 
-                    <div class="experience-item">
+                    <div class="experience-item" data-skills="abap">
                         <div class="company-name">Bakioglu</div>
                         <div class="date">Feb 2023 – May 2023</div>
                         <ul>
@@ -314,7 +514,7 @@
                         </ul>
                     </div>
 
-                    <div class="experience-item">
+                    <div class="experience-item" data-skills="abap forms alv">
                         <div class="company-name">Taha</div>
                         <div class="date">Nov 2022 – Feb 2023</div>
                         <ul>
