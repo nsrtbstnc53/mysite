@@ -327,3 +327,49 @@
         footer .contact-info {
             justify-content: center;
         }
+.visitor-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.counter-icon svg {
+    filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.3));
+}
+
+.counter-content {
+    text-align: left;
+}
+
+.counter-label {
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.counter-number {
+    font-size: 2em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.loading-dots {
+    display: inline-block;
+    animation: pulse 1.5s ease-in-out infinite;
+    font-size: 0.5em;
+    letter-spacing: 3px;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
