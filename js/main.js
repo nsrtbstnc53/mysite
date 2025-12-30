@@ -149,3 +149,46 @@
             });
             console.log('>>> All catalogs hidden');
         }
+async function fetchVisitorCount() {
+    try {
+        const response = await fetch('https://nsrtbstnc.goatcounter.com/counter/nsrtbstnc.json');
+        const data = await response.json();
+        
+        if (data && data.count) {
+            const countElement = document.getElementById('visitorCount');
+            if (countElement) {
+                animateCount(countElement, data.count);
+            }
+        }
+    } catch (error) {
+        console.log('Visitor count fetch error:', error);
+        const countElement = document.getElementById('visitorCount');
+        if (countElement) {
+            countElement.textContent = '---';
+        }
+    }
+}
+
+function animateCount(element, targetCount) {
+    const duration = 1500;
+    const start = 0;
+    const startTime = performance.now();
+    
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const current = Math.floor(start + (targetCount - start) * easeOutQuart);
+        
+        element.textContent = current.toLocaleString('tr-TR');
+        
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        }
+    }
+    
+    requestAnimationFrame(update);
+}
+
+// Sayfa yüklendiğinde çalıştır
+document.addEventListener('DOMContentLoaded', fetchVisitorCount);
