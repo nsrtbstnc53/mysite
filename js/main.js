@@ -18,7 +18,7 @@
         const sidebar = document.querySelector('.sidebar');
         const mainContent = document.querySelector('.main-content');
         
-        console.log('Elements found:', {
+        console.log('Elements found:', { 
             experienceSection: !!experienceSection,
             contentArea: !!contentArea,
             sidebar: !!sidebar,
