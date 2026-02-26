@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Oluşturucu</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            font-size: 2.2em;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            opacity: 0.85;
+            font-size: 1em;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.95em;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+
+        .back-btn:hover { opacity: 1; }
+
+        .main-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ===== FORM PANEL ===== */
+        .form-panel {
+            background: rgba(255,255,255,0.97);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            height: fit-content;
+        }
+
+        .form-panel h2 {
+            color: #667eea;
+            font-size: 1.4em;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #764ba2;
+        }
+
+        .form-section {
+            margin-bottom: 28px;
+        }
+
+        .form-section h3 {
+            color: #764ba2;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 4px;
+            margin-top: 10px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.9em;
+            font-family: inherit;
+            color: #333;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .photo-upload-area {
+            border: 2px dashed #667eea;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.2s;
+            position: relative;
+        }
+
+        .photo-upload-area:hover { background: #f0f2ff; }
+
+        .photo-upload-area input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .photo-upload-area .upload-icon {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+
+        .photo-upload-area p {
+            color: #667eea;
+            font-size: 0.85em;
+        }
+
+        #photoPreview {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: none;
+            margin: 10px auto 0;
+            border: 3px solid #667eea;
+        }
+
+        .dynamic-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .dynamic-item {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .dynamic-item input, .dynamic-item textarea {
+            flex: 1;
+        }
+
+        .remove-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 10px;
+            cursor: pointer;
+            font-size: 0.8em;
+            flex-shrink: 0;
+            margin-top: 0;
+            height: 38px;
+        }
+
+        .add-btn {
+            background: none;
+            border: 1.5px dashed #667eea;
+            color: #667eea;
+            border-radius: 8px;
+            padding: 8px 14px;
+            cursor: pointer;
+            font-size: 0.85em;
+            margin-top: 8px;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .add-btn:hover { background: #f0f2ff; }
+
+        .exp-item {
+            background: #f8f9ff;
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 10px;
+            border-left: 3px solid #667eea;
+        }
+
+        .exp-item input {
+            margin-bottom: 6px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .exp-header span {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 0.9em;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102,126,234,0.4);
+        }
+
+        /* ===== PREVIEW PANEL ===== */
+        .preview-panel {
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .preview-panel h2 {
+            color: white;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .download-btn {
+            width: 100%;
+            padding: 14px;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 12px;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* ===== CV PREVIEW ===== */
+        #cvPreview {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .cv-inner {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            min-height: 800px;
+        }
+
+        /* CV SOL SIDEBAR */
+        .cv-sidebar {
+            background: #2c3e50;
+            color: white;
+            padding: 30px 22px;
+        }
+
+        .cv-photo-wrap {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .cv-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.2);
+        }
+
+        .cv-photo-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            margin: 0 auto;
+        }
+
+        .cv-name {
+            font-size: 1.3em;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .cv-title {
+            font-size: 0.85em;
+            text-align: center;
+            opacity: 0.8;
+            margin-bottom: 25px;
+        }
+
+        .cv-section-title {
+            font-size: 0.8em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            margin-top: 22px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 5px;
+        }
+
+        .cv-contact-item {
+            font-size: 0.78em;
+            opacity: 0.85;
+            margin-bottom: 5px;
+            word-break: break-all;
+        }
+
+        .cv-skill-item {
+            font-size: 0.78em;
+            opacity: 0.85;
+            margin-bottom: 4px;
+        }
+
+        .cv-skill-item::before { content: "• "; }
+
+        .cv-lang-item {
+            font-size: 0.78em;
+            opacity: 0.85;
+            margin-bottom: 4px;
+        }
+
+        .cv-lang-item::before { content: "• "; }
+
+        /* CV SAĞ ALAN */
+        .cv-main {
+            padding: 30px 28px;
+        }
+
+        .cv-main-section {
+            margin-bottom: 22px;
+        }
+
+        .cv-main-title {
+            font-size: 1em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 5px;
+            margin-bottom: 12px;
+        }
+
+        .cv-profile-text {
+            font-size: 0.82em;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .cv-exp-item {
+            margin-bottom: 14px;
+        }
+
+        .cv-exp-company {
+            font-size: 0.85em;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .cv-exp-duties {
+            font-size: 0.78em;
+            color: #555;
+            margin-top: 4px;
+            padding-left: 12px;
+        }
+
+        .cv-exp-duties li {
+            margin-bottom: 2px;
+            list-style: disc;
+        }
+
+        @media (max-width: 900px) {
+            .main-wrapper { grid-template-columns: 1fr; }
+            .preview-panel { position: static; }
+        }
+    </style>
+</head>
+<body>
+
+<div style="max-width:1400px; margin:0 auto;">
+    <a href="index.html" class="back-btn">← Geri Dön</a>
+</div>
+
+<div class="page-header">
+    <h1>CV Oluşturucu</h1>
+    <p>Bilgilerinizi girin, anında önizleyin ve PDF olarak indirin</p>
+</div>
+
+<div class="main-wrapper">
+
+    <!-- FORM -->
+    <div class="form-panel">
+        <h2>📝 Bilgilerinizi Girin</h2>
+
+        <div class="form-section">
+            <h3>📷 Fotoğraf</h3>
+            <div class="photo-upload-area">
+                <input type="file" id="photoInput" accept="image/*">
+                <div class="upload-icon">📷</div>
+                <p>Fotoğraf yüklemek için tıklayın</p>
+                <img id="photoPreview" alt="Fotoğraf önizleme">
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>👤 Kişisel Bilgiler</h3>
+            <label>Ad Soyad</label>
+            <input type="text" id="fullName" placeholder="Örn: Ahmet Yılmaz" oninput="updatePreview()">
+            <label>Unvan / Pozisyon</label>
+            <input type="text" id="jobTitle" placeholder="Örn: SAP ABAP Developer" oninput="updatePreview()">
+        </div>
+
+        <div class="form-section">
+            <h3>📞 İletişim</h3>
+            <label>Telefon</label>
+            <input type="text" id="phone" placeholder="+90 5XX XXX XX XX" oninput="updatePreview()">
+            <label>E-posta</label>
+            <input type="text" id="email" placeholder="ornek@gmail.com" oninput="updatePreview()">
+            <label>Website / LinkedIn</label>
+            <input type="text" id="website" placeholder="linkedin.com/in/..." oninput="updatePreview()">
+        </div>
+
+        <div class="form-section">
+            <h3>📋 Profil / Hakkımda</h3>
+            <textarea id="profile" placeholder="Kendinizi kısaca tanıtın..." oninput="updatePreview()"></textarea>
+        </div>
+
+        <div class="form-section">
+            <h3>💼 Yetenekler</h3>
+            <div class="dynamic-list" id="skillsList">
+                <div class="dynamic-item">
+                    <input type="text" placeholder="Yetenek" oninput="updatePreview()">
+                    <button class="remove-btn" onclick="removeItem(this)">✕</button>
+                </div>
+            </div>
+            <button class="add-btn" onclick="addSkill()">+ Yetenek Ekle</button>
+        </div>
+
+        <div class="form-section">
+            <h3>🌐 Diller</h3>
+            <div class="dynamic-list" id="langsList">
+                <div class="dynamic-item">
+                    <input type="text" placeholder="Örn: Türkçe: Anadil" oninput="updatePreview()">
+                    <button class="remove-btn" onclick="removeItem(this)">✕</button>
+                </div>
+            </div>
+            <button class="add-btn" onclick="addLang()">+ Dil Ekle</button>
+        </div>
+
+        <div class="form-section">
+            <h3>🏢 İş Deneyimi</h3>
+            <div id="expList"></div>
+            <button class="add-btn" onclick="addExp()">+ Deneyim Ekle</button>
+        </div>
+
+        <button class="generate-btn" onclick="updatePreview()">🔄 Önizlemeyi Güncelle</button>
+    </div>
+
+    <!-- PREVIEW -->
+    <div class="preview-panel">
+        <h2>👁️ Önizleme</h2>
+
+        <div id="cvPreview">
+            <div class="cv-inner">
+                <div class="cv-sidebar">
+                    <div class="cv-photo-wrap">
+                        <div class="cv-photo-placeholder" id="cvPhotoPlaceholder">👤</div>
+                        <img id="cvPhoto" class="cv-photo" style="display:none;" alt="CV Foto">
+                    </div>
+                    <div class="cv-name" id="cvName">Ad Soyad</div>
+                    <div class="cv-title" id="cvJobTitle">Pozisyon</div>
+
+                    <div class="cv-section-title">CONTACT</div>
+                    <div id="cvContact">
+                        <div class="cv-contact-item">-</div>
+                    </div>
+
+                    <div class="cv-section-title">SKILLS</div>
+                    <div id="cvSkills">
+                        <div class="cv-skill-item">-</div>
+                    </div>
+
+                    <div class="cv-section-title">LANGUAGES</div>
+                    <div id="cvLangs">
+                        <div class="cv-lang-item">-</div>
+                    </div>
+                </div>
+
+                <div class="cv-main">
+                    <div class="cv-main-section">
+                        <div class="cv-main-title">PROFILE</div>
+                        <div class="cv-profile-text" id="cvProfile">Profiliniz burada görünecek.</div>
+                    </div>
+
+                    <div class="cv-main-section">
+                        <div class="cv-main-title">WORK EXPERIENCE</div>
+                        <div id="cvExp">
+                            <div style="font-size:0.82em; color:#999;">Deneyim ekleyin...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="download-btn" onclick="downloadPDF()">⬇️ PDF Olarak İndir</button>
+    </div>
+</div>
+
+<script>
+    let photoDataUrl = null;
+
+    // Fotoğraf yükleme
+    document.getElementById('photoInput').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+            photoDataUrl = ev.target.result;
+            document.getElementById('photoPreview').src = photoDataUrl;
+            document.getElementById('photoPreview').style.display = 'block';
+            updatePreview();
+        };
+        reader.readAsDataURL(file);
+    });
+
+    function addSkill() {
+        const list = document.getElementById('skillsList');
+        const div = document.createElement('div');
+        div.className = 'dynamic-item';
+        div.innerHTML = `<input type="text" placeholder="Yetenek" oninput="updatePreview()">
+                         <button class="remove-btn" onclick="removeItem(this)">✕</button>`;
+        list.appendChild(div);
+    }
+
+    function addLang() {
+        const list = document.getElementById('langsList');
+        const div = document.createElement('div');
+        div.className = 'dynamic-item';
+        div.innerHTML = `<input type="text" placeholder="Örn: İngilizce: İleri" oninput="updatePreview()">
+                         <button class="remove-btn" onclick="removeItem(this)">✕</button>`;
+        list.appendChild(div);
+    }
+
+    let expCount = 0;
+    function addExp() {
+        expCount++;
+        const list = document.getElementById('expList');
+        const div = document.createElement('div');
+        div.className = 'exp-item';
+        div.id = `exp-${expCount}`;
+        div.innerHTML = `
+            <div class="exp-header">
+                <span>Deneyim #${expCount}</span>
+                <button class="remove-btn" onclick="this.closest('.exp-item').remove(); updatePreview()">✕ Kaldır</button>
+            </div>
+            <input type="text" placeholder="Şirket Adı ve Yer (Örn: Azercell – Azerbaijan)" oninput="updatePreview()">
+            <input type="text" placeholder="Tarih Aralığı (Örn: Apr 2025 – Jan 2026)" oninput="updatePreview()">
+            <textarea placeholder="Görevler (her satıra bir görev yazın)" rows="3" oninput="updatePreview()"></textarea>
+        `;
+        list.appendChild(div);
+    }
+
+    function removeItem(btn) {
+        btn.closest('.dynamic-item').remove();
+        updatePreview();
+    }
+
+    function updatePreview() {
+        // Fotoğraf
+        const cvPhoto = document.getElementById('cvPhoto');
+        const cvPlaceholder = document.getElementById('cvPhotoPlaceholder');
+        if (photoDataUrl) {
+            cvPhoto.src = photoDataUrl;
+            cvPhoto.style.display = 'block';
+            cvPlaceholder.style.display = 'none';
+        } else {
+            cvPhoto.style.display = 'none';
+            cvPlaceholder.style.display = 'flex';
+        }
+
+        // İsim ve Unvan
+        document.getElementById('cvName').textContent = document.getElementById('fullName').value || 'Ad Soyad';
+        document.getElementById('cvJobTitle').textContent = document.getElementById('jobTitle').value || 'Pozisyon';
+
+        // İletişim
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const website = document.getElementById('website').value;
+        let contactHTML = '';
+        if (phone) contactHTML += `<div class="cv-contact-item">${phone}</div>`;
+        if (email) contactHTML += `<div class="cv-contact-item">${email}</div>`;
+        if (website) contactHTML += `<div class="cv-contact-item">${website}</div>`;
+        document.getElementById('cvContact').innerHTML = contactHTML || '<div class="cv-contact-item">-</div>';
+
+        // Yetenekler
+        const skills = [...document.querySelectorAll('#skillsList input')].map(i => i.value).filter(v => v.trim());
+        document.getElementById('cvSkills').innerHTML = skills.length
+            ? skills.map(s => `<div class="cv-skill-item">${s}</div>`).join('')
+            : '<div class="cv-skill-item">-</div>';
+
+        // Diller
+        const langs = [...document.querySelectorAll('#langsList input')].map(i => i.value).filter(v => v.trim());
+        document.getElementById('cvLangs').innerHTML = langs.length
+            ? langs.map(l => `<div class="cv-lang-item">${l}</div>`).join('')
+            : '<div class="cv-lang-item">-</div>';
+
+        // Profil
+        document.getElementById('cvProfile').textContent = document.getElementById('profile').value || 'Profiliniz burada görünecek.';
+
+        // Deneyimler
+        const expItems = document.querySelectorAll('.exp-item');
+        let expHTML = '';
+        expItems.forEach(item => {
+            const inputs = item.querySelectorAll('input');
+            const textarea = item.querySelector('textarea');
+            const company = inputs[0]?.value || '';
+            const date = inputs[1]?.value || '';
+            const duties = textarea?.value.split('\n').filter(d => d.trim()) || [];
+            if (company || date) {
+                expHTML += `<div class="cv-exp-item">
+                    <div class="cv-exp-company">${company}${date ? ` (${date})` : ''}</div>
+                    ${duties.length ? `<ul class="cv-exp-duties">${duties.map(d => `<li>${d}</li>`).join('')}</ul>` : ''}
+                </div>`;
+            }
+        });
+        document.getElementById('cvExp').innerHTML = expHTML || '<div style="font-size:0.82em; color:#999;">Deneyim ekleyin...</div>';
+    }
+
+    function downloadPDF() {
+        const element = document.getElementById('cvPreview');
+        const opt = {
+            margin: 0,
+            filename: 'CV.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(element).save();
+    }
+
+    // Başlangıçta 2 skill, 2 dil ve 1 deneyim ekle
+    addSkill();
+    addLang();
+    addExp();
+</script>
+</body>
+</html>
