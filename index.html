@@ -9,11 +9,27 @@
 </head>
 <body>
      <div class="container">
-            <a href="cv-olusturucu.html" class="cta-button" style="margin-top: 30px;">📄 CV Oluştur</a>
+        <div class="above-header">
+            <a href="cv-olusturucu.html" class="cta-button">📄 CV Oluştur</a>
+            <div class="lang-switcher">
+                <input type="radio" name="lang" id="lang-en" value="en" checked>
+                <label for="lang-en" title="English">
+                    <img src="https://flagcdn.com/w40/gb.png" alt="English" width="36" height="24">
+                </label>
+                <input type="radio" name="lang" id="lang-tr" value="tr">
+                <label for="lang-tr" title="Türkçe">
+                    <img src="https://flagcdn.com/w40/tr.png" alt="Türkçe" width="36" height="24">
+                </label>
+            </div>
+        </div>
         <header>
             <h1>Nusret Bostancı</h1>
-            <div class="title">SAP ABAP Developer</div>
-            <p class="profile-text" style="max-width: 800px; margin: 20px auto 0;">
+            <div class="title"
+                 data-en="SAP ABAP Developer"
+                 data-tr="SAP ABAP Geliştirici">SAP ABAP Developer</div>
+            <p class="profile-text" style="max-width: 800px; margin: 20px auto 0;"
+               data-en="SAP ABAP and ABAP Cloud developer with 3+ years of experience. Skilled in RAP, OData, CDS, Fiori Elements, and modern ABAP architectures. Strong experience in international projects across Dubai and Azerbaijan, delivering high-quality enterprise solutions."
+               data-tr="3+ yıl deneyime sahip SAP ABAP ve ABAP Cloud geliştiricisi. RAP, OData, CDS, Fiori Elements ve modern ABAP mimarilerinde uzmanlık. Dubai ve Azerbaycan'daki uluslararası projelerde yüksek kaliteli kurumsal çözümler sunan güçlü deneyim.">
                 SAP ABAP and ABAP Cloud developer with 3+ years of experience. Skilled in RAP, OData, CDS, Fiori Elements, and modern ABAP architectures. Strong experience in international projects across Dubai and Azerbaijan, delivering high-quality enterprise solutions.
             </p>
         </header>
@@ -21,7 +37,7 @@
         <div class="main-content">
             <aside class="sidebar">
                 <section>
-                    <h2>Skills</h2>
+                    <h2 data-en="Skills" data-tr="Beceriler">Skills</h2>
                     <ul class="skills-list">
                         <li data-skill="abap">ABAP / OO ABAP</li>
                         <li data-skill="rap">RAP / ABAP Cloud</li>
@@ -32,10 +48,10 @@
                 </section>
 
                 <section style="margin-top: 40px;">
-                    <h2>Languages</h2>
+                    <h2 data-en="Languages" data-tr="Diller">Languages</h2>
                     <ul class="languages-list">
-                        <li><strong>Turkish:</strong> Native</li>
-                        <li><strong>English:</strong> Intermediate</li>
+                        <li data-en="&lt;strong&gt;Turkish:&lt;/strong&gt; Native" data-tr="&lt;strong&gt;Türkçe:&lt;/strong&gt; Anadil"><strong>Turkish:</strong> Native</li>
+                        <li data-en="&lt;strong&gt;English:&lt;/strong&gt; Intermediate" data-tr="&lt;strong&gt;İngilizce:&lt;/strong&gt; Orta Seviye"><strong>English:</strong> Intermediate</li>
                     </ul>
                 </section>
             </aside>
@@ -44,39 +60,39 @@
                 <!-- ABAP / OO ABAP Catalog -->
                 <div class="skill-catalog" data-skill="abap" style="z-index: 10;">
                     <div class="catalog-card">
-                        <h3>Object-Oriented Programming</h3>
-                        <p>Advanced OOP concepts implementation</p>
+                        <h3 data-en="Object-Oriented Programming" data-tr="Nesne Yönelimli Programlama">Object-Oriented Programming</h3>
+                        <p data-en="Advanced OOP concepts implementation" data-tr="İleri düzey OOP kavramları uygulaması">Advanced OOP concepts implementation</p>
                         <ul>
-                            <li>Classes & Interfaces</li>
-                            <li>Inheritance & Polymorphism</li>
-                            <li>Design Patterns</li>
+                            <li data-en="Classes &amp; Interfaces" data-tr="Sınıflar &amp; Arayüzler">Classes &amp; Interfaces</li>
+                            <li data-en="Inheritance &amp; Polymorphism" data-tr="Kalıtım &amp; Polimorfizm">Inheritance &amp; Polymorphism</li>
+                            <li data-en="Design Patterns" data-tr="Tasarım Kalıpları">Design Patterns</li>
                         </ul>
                     </div>
                     <div class="catalog-card">
-                        <h3>Classical ABAP</h3>
-                        <p>Core ABAP development techniques</p>
+                        <h3 data-en="Classical ABAP" data-tr="Klasik ABAP">Classical ABAP</h3>
+                        <p data-en="Core ABAP development techniques" data-tr="Temel ABAP geliştirme teknikleri">Core ABAP development techniques</p>
                         <ul>
-                            <li>Reports & Module Pool</li>
-                            <li>Database Operations</li>
-                            <li>Performance Optimization</li>
+                            <li data-en="Reports &amp; Module Pool" data-tr="Raporlar &amp; Modül Havuzu">Reports &amp; Module Pool</li>
+                            <li data-en="Database Operations" data-tr="Veritabanı İşlemleri">Database Operations</li>
+                            <li data-en="Performance Optimization" data-tr="Performans Optimizasyonu">Performance Optimization</li>
                         </ul>
                     </div>
                     <div class="catalog-card">
-                        <h3>ALV Programming</h3>
-                        <p>Advanced list viewer implementations</p>
+                        <h3 data-en="ALV Programming" data-tr="ALV Programlama">ALV Programming</h3>
+                        <p data-en="Advanced list viewer implementations" data-tr="Gelişmiş liste görüntüleyici uygulamaları">Advanced list viewer implementations</p>
                         <ul>
-                            <li>Grid & Tree Displays</li>
-                            <li>Interactive Reports</li>
-                            <li>Custom Functions</li>
+                            <li data-en="Grid &amp; Tree Displays" data-tr="Grid &amp; Ağaç Görünümleri">Grid &amp; Tree Displays</li>
+                            <li data-en="Interactive Reports" data-tr="Etkileşimli Raporlar">Interactive Reports</li>
+                            <li data-en="Custom Functions" data-tr="Özel Fonksiyonlar">Custom Functions</li>
                         </ul>
                     </div>
                     <div class="catalog-card">
-                        <h3>Enhancement Framework</h3>
-                        <p>SAP standard enhancement techniques</p>
+                        <h3 data-en="Enhancement Framework" data-tr="İyileştirme Çerçevesi">Enhancement Framework</h3>
+                        <p data-en="SAP standard enhancement techniques" data-tr="SAP standart iyileştirme teknikleri">SAP standard enhancement techniques</p>
                         <ul>
-                            <li>BAdI Implementation</li>
-                            <li>User Exits</li>
-                            <li>Implicit Enhancement</li>
+                            <li data-en="BAdI Implementation" data-tr="BAdI Uygulaması">BAdI Implementation</li>
+                            <li data-en="User Exits" data-tr="Kullanıcı Çıkışları">User Exits</li>
+                            <li data-en="Implicit Enhancement" data-tr="Örtük İyileştirme">Implicit Enhancement</li>
                         </ul>
                     </div>
                 </div>
@@ -84,39 +100,39 @@
                 <!-- RAP / ABAP Cloud Catalog -->
                 <div class="skill-catalog" data-skill="rap">
                     <div class="catalog-card">
-                        <h3>RESTful Services</h3>
-                        <p>Modern API development with RAP</p>
+                        <h3 data-en="RESTful Services" data-tr="RESTful Servisler">RESTful Services</h3>
+                        <p data-en="Modern API development with RAP" data-tr="RAP ile modern API geliştirme">Modern API development with RAP</p>
                         <ul>
-                            <li>Business Object Design</li>
-                            <li>Behavior Implementation</li>
-                            <li>Validation & Actions</li>
+                            <li data-en="Business Object Design" data-tr="İş Nesnesi Tasarımı">Business Object Design</li>
+                            <li data-en="Behavior Implementation" data-tr="Davranış Uygulaması">Behavior Implementation</li>
+                            <li data-en="Validation &amp; Actions" data-tr="Doğrulama &amp; Aksiyonlar">Validation &amp; Actions</li>
                         </ul>
                     </div>
                     <div class="catalog-card">
-                        <h3>Fiori Elements</h3>
-                        <p>UI generation and customization</p>
+                        <h3 data-en="Fiori Elements" data-tr="Fiori Elements">Fiori Elements</h3>
+                        <p data-en="UI generation and customization" data-tr="Arayüz oluşturma ve özelleştirme">UI generation and customization</p>
                         <ul>
-                            <li>List Reports</li>
-                            <li>Object Pages</li>
-                            <li>Annotations</li>
+                            <li data-en="List Reports" data-tr="Liste Raporları">List Reports</li>
+                            <li data-en="Object Pages" data-tr="Nesne Sayfaları">Object Pages</li>
+                            <li data-en="Annotations" data-tr="Anotasyonlar">Annotations</li>
                         </ul>
                     </div>
                     <div class="catalog-card">
-                        <h3>ABAP Cloud</h3>
-                        <p>Cloud-ready development practices</p>
+                        <h3 data-en="ABAP Cloud" data-tr="ABAP Cloud">ABAP Cloud</h3>
+                        <p data-en="Cloud-ready development practices" data-tr="Bulut hazır geliştirme pratikleri">Cloud-ready development practices</p>
                         <ul>
-                            <li>Released APIs</li>
-                            <li>Tier-1 Extensions</li>
-                            <li>Clean Core Principles</li>
+                            <li data-en="Released APIs" data-tr="Yayınlanmış API'ler">Released APIs</li>
+                            <li data-en="Tier-1 Extensions" data-tr="Katman-1 Uzantıları">Tier-1 Extensions</li>
+                            <li data-en="Clean Core Principles" data-tr="Temiz Çekirdek İlkeleri">Clean Core Principles</li>
                         </ul>
                     </div>
                     <div class="catalog-card">
-                        <h3>BTP Integration</h3>
-                        <p>SAP Business Technology Platform</p>
+                        <h3 data-en="BTP Integration" data-tr="BTP Entegrasyonu">BTP Integration</h3>
+                        <p data-en="SAP Business Technology Platform" data-tr="SAP Business Technology Platform">SAP Business Technology Platform</p>
                         <ul>
-                            <li>Cloud Services</li>
-                            <li>API Management</li>
-                            <li>Event-Driven Architecture</li>
+                            <li data-en="Cloud Services" data-tr="Bulut Servisleri">Cloud Services</li>
+                            <li data-en="API Management" data-tr="API Yönetimi">API Management</li>
+                            <li data-en="Event-Driven Architecture" data-tr="Olay Odaklı Mimari">Event-Driven Architecture</li>
                         </ul>
                     </div>
                 </div>
@@ -124,39 +140,39 @@
                 <!-- OData Catalog -->
                 <div class="skill-catalog" data-skill="odata">
                     <div class="catalog-card">
-                        <h3>OData Services</h3>
-                        <p>RESTful web service development</p>
+                        <h3 data-en="OData Services" data-tr="OData Servisleri">OData Services</h3>
+                        <p data-en="RESTful web service development" data-tr="RESTful web servisi geliştirme">RESTful web service development</p>
                         <ul>
-                            <li>CRUD Operations</li>
-                            <li>Deep Insert/Update</li>
-                            <li>Function Imports</li>
+                            <li data-en="CRUD Operations" data-tr="CRUD İşlemleri">CRUD Operations</li>
+                            <li data-en="Deep Insert/Update" data-tr="Derin Ekleme/Güncelleme">Deep Insert/Update</li>
+                            <li data-en="Function Imports" data-tr="Fonksiyon İçe Aktarma">Function Imports</li>
                         </ul>
                     </div>
                     <div class="catalog-card">
-                        <h3>CDS Views</h3>
-                        <p>Core Data Services modeling</p>
+                        <h3 data-en="CDS Views" data-tr="CDS Görünümleri">CDS Views</h3>
+                        <p data-en="Core Data Services modeling" data-tr="Temel Veri Servisleri modelleme">Core Data Services modeling</p>
                         <ul>
-                            <li>Basic & Composite Views</li>
-                            <li>Associations & Joins</li>
-                            <li>Annotations</li>
+                            <li data-en="Basic &amp; Composite Views" data-tr="Temel &amp; Bileşik Görünümler">Basic &amp; Composite Views</li>
+                            <li data-en="Associations &amp; Joins" data-tr="İlişkiler &amp; Birleştirmeler">Associations &amp; Joins</li>
+                            <li data-en="Annotations" data-tr="Anotasyonlar">Annotations</li>
                         </ul>
                     </div>
                     <div class="catalog-card">
-                        <h3>Performance Tuning</h3>
-                        <p>Query optimization techniques</p>
+                        <h3 data-en="Performance Tuning" data-tr="Performans Ayarı">Performance Tuning</h3>
+                        <p data-en="Query optimization techniques" data-tr="Sorgu optimizasyon teknikleri">Query optimization techniques</p>
                         <ul>
-                            <li>CDS View Optimization</li>
-                            <li>Indexed Access</li>
-                            <li>Buffer Management</li>
+                            <li data-en="CDS View Optimization" data-tr="CDS Görünüm Optimizasyonu">CDS View Optimization</li>
+                            <li data-en="Indexed Access" data-tr="İndeksli Erişim">Indexed Access</li>
+                            <li data-en="Buffer Management" data-tr="Tampon Yönetimi">Buffer Management</li>
                         </ul>
                     </div>
                     <div class="catalog-card">
-                        <h3>API Development</h3>
-                        <p>Integration layer implementation</p>
+                        <h3 data-en="API Development" data-tr="API Geliştirme">API Development</h3>
+                        <p data-en="Integration layer implementation" data-tr="Entegrasyon katmanı uygulaması">Integration layer implementation</p>
                         <ul>
-                            <li>External System Integration</li>
-                            <li>Authentication & Security</li>
-                            <li>Error Handling</li>
+                            <li data-en="External System Integration" data-tr="Harici Sistem Entegrasyonu">External System Integration</li>
+                            <li data-en="Authentication &amp; Security" data-tr="Kimlik Doğrulama &amp; Güvenlik">Authentication &amp; Security</li>
+                            <li data-en="Error Handling" data-tr="Hata Yönetimi">Error Handling</li>
                         </ul>
                     </div>
                 </div>
@@ -164,39 +180,39 @@
                 <!-- ALV Catalog -->
                 <div class="skill-catalog" data-skill="alv">
                     <div class="catalog-card">
-                        <h3>ALV Grid</h3>
-                        <p>Standard grid display programming</p>
+                        <h3 data-en="ALV Grid" data-tr="ALV Grid">ALV Grid</h3>
+                        <p data-en="Standard grid display programming" data-tr="Standart grid görüntüleme programlama">Standard grid display programming</p>
                         <ul>
-                            <li>Field Catalog Setup</li>
-                            <li>Layout Variants</li>
-                            <li>Sorting & Filtering</li>
+                            <li data-en="Field Catalog Setup" data-tr="Alan Kataloğu Kurulumu">Field Catalog Setup</li>
+                            <li data-en="Layout Variants" data-tr="Düzen Varyantları">Layout Variants</li>
+                            <li data-en="Sorting &amp; Filtering" data-tr="Sıralama &amp; Filtreleme">Sorting &amp; Filtering</li>
                         </ul>
                     </div>
                     <div class="catalog-card">
-                        <h3>SALV Framework</h3>
-                        <p>Simple ALV implementation</p>
+                        <h3 data-en="SALV Framework" data-tr="SALV Framework">SALV Framework</h3>
+                        <p data-en="Simple ALV implementation" data-tr="Basit ALV uygulaması">Simple ALV implementation</p>
                         <ul>
-                            <li>Table & Grid Display</li>
-                            <li>Event Handling</li>
-                            <li>Custom Functions</li>
+                            <li data-en="Table &amp; Grid Display" data-tr="Tablo &amp; Grid Görüntüleme">Table &amp; Grid Display</li>
+                            <li data-en="Event Handling" data-tr="Olay İşleme">Event Handling</li>
+                            <li data-en="Custom Functions" data-tr="Özel Fonksiyonlar">Custom Functions</li>
                         </ul>
                     </div>
                     <div class="catalog-card">
-                        <h3>Interactive Reports</h3>
-                        <p>User interaction features</p>
+                        <h3 data-en="Interactive Reports" data-tr="Etkileşimli Raporlar">Interactive Reports</h3>
+                        <p data-en="User interaction features" data-tr="Kullanıcı etkileşim özellikleri">User interaction features</p>
                         <ul>
-                            <li>Hotspot Clicks</li>
-                            <li>Context Menus</li>
-                            <li>Drill-Down Reports</li>
+                            <li data-en="Hotspot Clicks" data-tr="Hotspot Tıklamaları">Hotspot Clicks</li>
+                            <li data-en="Context Menus" data-tr="Bağlam Menüleri">Context Menus</li>
+                            <li data-en="Drill-Down Reports" data-tr="Ayrıntılı Raporlar">Drill-Down Reports</li>
                         </ul>
                     </div>
                     <div class="catalog-card">
-                        <h3>Advanced Features</h3>
-                        <p>Complex ALV implementations</p>
+                        <h3 data-en="Advanced Features" data-tr="Gelişmiş Özellikler">Advanced Features</h3>
+                        <p data-en="Complex ALV implementations" data-tr="Karmaşık ALV uygulamaları">Complex ALV implementations</p>
                         <ul>
-                            <li>Hierarchical Displays</li>
-                            <li>Editable ALVs</li>
-                            <li>Export Functions</li>
+                            <li data-en="Hierarchical Displays" data-tr="Hiyerarşik Görünümler">Hierarchical Displays</li>
+                            <li data-en="Editable ALVs" data-tr="Düzenlenebilir ALV'ler">Editable ALVs</li>
+                            <li data-en="Export Functions" data-tr="Dışa Aktarma Fonksiyonları">Export Functions</li>
                         </ul>
                     </div>
                 </div>
@@ -204,52 +220,52 @@
                 <!-- Forms Catalog -->
                 <div class="skill-catalog" data-skill="forms">
                     <div class="catalog-card">
-                        <h3>SmartForms</h3>
-                        <p>Dynamic form generation</p>
+                        <h3 data-en="SmartForms" data-tr="SmartForms">SmartForms</h3>
+                        <p data-en="Dynamic form generation" data-tr="Dinamik form oluşturma">Dynamic form generation</p>
                         <ul>
-                            <li>Template Design</li>
-                            <li>Window Management</li>
-                            <li>Multi-language Support</li>
+                            <li data-en="Template Design" data-tr="Şablon Tasarımı">Template Design</li>
+                            <li data-en="Window Management" data-tr="Pencere Yönetimi">Window Management</li>
+                            <li data-en="Multi-language Support" data-tr="Çok Dil Desteği">Multi-language Support</li>
                         </ul>
                     </div>
                     <div class="catalog-card">
-                        <h3>Adobe Forms</h3>
-                        <p>Interactive PDF development</p>
+                        <h3 data-en="Adobe Forms" data-tr="Adobe Forms">Adobe Forms</h3>
+                        <p data-en="Interactive PDF development" data-tr="Etkileşimli PDF geliştirme">Interactive PDF development</p>
                         <ul>
-                            <li>Layout Design</li>
-                            <li>Interface Development</li>
-                            <li>Dynamic Forms</li>
+                            <li data-en="Layout Design" data-tr="Düzen Tasarımı">Layout Design</li>
+                            <li data-en="Interface Development" data-tr="Arayüz Geliştirme">Interface Development</li>
+                            <li data-en="Dynamic Forms" data-tr="Dinamik Formlar">Dynamic Forms</li>
                         </ul>
                     </div>
                     <div class="catalog-card">
-                        <h3>Print Programs</h3>
-                        <p>Backend logic implementation</p>
+                        <h3 data-en="Print Programs" data-tr="Yazdırma Programları">Print Programs</h3>
+                        <p data-en="Backend logic implementation" data-tr="Arka uç mantık uygulaması">Backend logic implementation</p>
                         <ul>
-                            <li>Data Selection</li>
-                            <li>Logic Processing</li>
-                            <li>Output Control</li>
+                            <li data-en="Data Selection" data-tr="Veri Seçimi">Data Selection</li>
+                            <li data-en="Logic Processing" data-tr="Mantık İşleme">Logic Processing</li>
+                            <li data-en="Output Control" data-tr="Çıktı Kontrolü">Output Control</li>
                         </ul>
                     </div>
                     <div class="catalog-card">
-                        <h3>Output Management</h3>
-                        <p>Document distribution setup</p>
+                        <h3 data-en="Output Management" data-tr="Çıktı Yönetimi">Output Management</h3>
+                        <p data-en="Document distribution setup" data-tr="Belge dağıtım kurulumu">Document distribution setup</p>
                         <ul>
-                            <li>Print Configuration</li>
-                            <li>Email Integration</li>
-                            <li>Archive Management</li>
+                            <li data-en="Print Configuration" data-tr="Yazdırma Yapılandırması">Print Configuration</li>
+                            <li data-en="Email Integration" data-tr="E-posta Entegrasyonu">Email Integration</li>
+                            <li data-en="Archive Management" data-tr="Arşiv Yönetimi">Archive Management</li>
                         </ul>
                     </div>
                 </div>
 
                 <section class="experience-section">
-                    <h2>Work Experience</h2>
-                    
+                    <h2 data-en="Work Experience" data-tr="İş Deneyimi">Work Experience</h2>
+
                     <div class="experience-item" data-skills="abap odata alv">
                         <div class="company-name">Azercell – Azerbaijan</div>
                         <div class="date">Apr 2025 – Jan 2026</div>
                         <ul>
-                            <li>S/4HANA ABAP & OData development</li>
-                            <li>Performance optimization</li>
+                            <li data-en="S/4HANA ABAP &amp; OData development" data-tr="S/4HANA ABAP &amp; OData geliştirme">S/4HANA ABAP &amp; OData development</li>
+                            <li data-en="Performance optimization" data-tr="Performans optimizasyonu">Performance optimization</li>
                         </ul>
                     </div>
 
@@ -257,8 +273,8 @@
                         <div class="company-name">Ghitha – Dubai</div>
                         <div class="date">Jun 2025 – Nov 2025</div>
                         <ul>
-                            <li>RAP development</li>
-                            <li>SAP BTP integrations</li>
+                            <li data-en="RAP development" data-tr="RAP geliştirme">RAP development</li>
+                            <li data-en="SAP BTP integrations" data-tr="SAP BTP entegrasyonları">SAP BTP integrations</li>
                         </ul>
                     </div>
 
@@ -266,8 +282,8 @@
                         <div class="company-name">GBM – Dubai</div>
                         <div class="date">Apr 2024 – Oct 2025</div>
                         <ul>
-                            <li>RAP service development</li>
-                            <li>OData API and Fiori integration</li>
+                            <li data-en="RAP service development" data-tr="RAP servis geliştirme">RAP service development</li>
+                            <li data-en="OData API and Fiori integration" data-tr="OData API ve Fiori entegrasyonu">OData API and Fiori integration</li>
                         </ul>
                     </div>
 
@@ -275,8 +291,8 @@
                         <div class="company-name">Nuh</div>
                         <div class="date">Apr 2024 – Nov 2025</div>
                         <ul>
-                            <li>ABAP Cloud development</li>
-                            <li>Workflow solutions</li>
+                            <li data-en="ABAP Cloud development" data-tr="ABAP Cloud geliştirme">ABAP Cloud development</li>
+                            <li data-en="Workflow solutions" data-tr="İş akışı çözümleri">Workflow solutions</li>
                         </ul>
                     </div>
 
@@ -284,7 +300,7 @@
                         <div class="company-name">Anadolu Motor</div>
                         <div class="date">Jan 2024 – Apr 2024</div>
                         <ul>
-                            <li>Logistics module developments</li>
+                            <li data-en="Logistics module developments" data-tr="Lojistik modül geliştirmeleri">Logistics module developments</li>
                         </ul>
                     </div>
 
@@ -292,7 +308,7 @@
                         <div class="company-name">Sisecam</div>
                         <div class="date">Mar 2023 – Jan 2024</div>
                         <ul>
-                            <li>OData, CDS, performance improvements</li>
+                            <li data-en="OData, CDS, performance improvements" data-tr="OData, CDS, performans iyileştirmeleri">OData, CDS, performance improvements</li>
                         </ul>
                     </div>
 
@@ -300,7 +316,7 @@
                         <div class="company-name">Bakioglu</div>
                         <div class="date">Feb 2023 – May 2023</div>
                         <ul>
-                            <li>S/4HANA development tasks</li>
+                            <li data-en="S/4HANA development tasks" data-tr="S/4HANA geliştirme görevleri">S/4HANA development tasks</li>
                         </ul>
                     </div>
 
@@ -308,7 +324,7 @@
                         <div class="company-name">Taha</div>
                         <div class="date">Nov 2022 – Feb 2023</div>
                         <ul>
-                            <li>Classical ABAP developments</li>
+                            <li data-en="Classical ABAP developments" data-tr="Klasik ABAP geliştirmeleri">Classical ABAP developments</li>
                         </ul>
                     </div>
                 </section>
@@ -326,7 +342,7 @@
                     <span>+90 533 630 53 95</span>
                 </div>
             <div class="visitor-counter">
-                <div class="counter-label">Toplam Ziyaretçi</div>
+                <div class="counter-label" data-en="Total Visitors" data-tr="Toplam Ziyaretçi">Toplam Ziyaretçi</div>
                     <div class="counter-number" id="visitorCount">
                         <span class="loading-dots">●●●</span>
                     </div>

@@ -205,3 +205,20 @@
 
         // Sayfa yüklendiğinde çalıştır
         document.addEventListener('DOMContentLoaded', initVisitorCounter);
+
+        // =============================================
+        // DİL DEĞİŞTİRİCİ
+        // =============================================
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const text = el.getAttribute('data-' + lang);
+                if (text !== null) el.innerHTML = text;
+            });
+            document.documentElement.lang = lang;
+        }
+
+        document.querySelectorAll('input[name="lang"]').forEach(input => {
+            input.addEventListener('change', function () {
+                setLanguage(this.value);
+            });
+        });
