@@ -1,4 +1,4 @@
-        // Önce tüm elementleri kontrol edelim
+// Önce tüm elementleri kontrol edelim
         console.log('=== DEBUGGING START ===');
         
         const skillItems = document.querySelectorAll('.skills-list li');
@@ -37,7 +37,6 @@
                 
                 console.log('>>> Skill hover:', skillType);
                 
-                // Eğer bekleyen bir reset varsa iptal et
                 if (resetTimeout) {
                     clearTimeout(resetTimeout);
                     resetTimeout = null;
@@ -52,7 +51,6 @@
         if (sidebar) {
             sidebar.addEventListener('mouseleave', function(e) {
                 console.log('>>> Sidebar LEAVE');
-                // Sadece sol tarafa gidiyorsa reset yap
                 const sidebarRect = sidebar.getBoundingClientRect();
                 if (e.clientX < sidebarRect.left) {
                     console.log('>>> Mouse went LEFT, resetting');
@@ -67,7 +65,6 @@
             contentArea.addEventListener('mouseleave', function(e) {
                 console.log('>>> Content area LEAVE');
                 resetTimeout = setTimeout(() => {
-                    // Eğer sidebar'a geri dönmediyse reset yap
                     if (!sidebar.matches(':hover')) {
                         console.log('>>> Resetting from content area');
                         resetView();
@@ -83,7 +80,6 @@
                 console.log('>>> Main content LEAVE');
                 const mainRect = mainContent.getBoundingClientRect();
                 
-                // Yukarı veya aşağı çıkıldıysa reset yap
                 if (e.clientY < mainRect.top || e.clientY > mainRect.bottom) {
                     console.log('>>> Mouse went UP or DOWN, resetting');
                     resetTimeout = setTimeout(() => {
@@ -94,10 +90,8 @@
                 }
             });
 
-            // Main content area'ya girildiğinde
             mainContent.addEventListener('mouseenter', function() {
                 console.log('>>> Main content ENTER');
-                // Bekleyen reset'i iptal et
                 if (resetTimeout) {
                     clearTimeout(resetTimeout);
                     resetTimeout = null;
@@ -109,19 +103,16 @@
         function showSkillContent(skillType) {
             console.log('>>> showSkillContent called for:', skillType);
             
-            // Work Experience section'ını gizle
             if (experienceSection) {
                 experienceSection.classList.add('hidden');
                 console.log('>>> Experience section hidden');
             }
             
-            // Önce tüm katalogları gizle
             catalogs.forEach(catalog => {
                 catalog.classList.remove('active');
             });
             console.log('>>> All catalogs deactivated');
             
-            // Seçili skill'in katalogunu göster
             const targetCatalog = document.querySelector(`.skill-catalog[data-skill="${skillType}"]`);
             console.log('>>> Looking for catalog with data-skill:', skillType);
             console.log('>>> Found catalog:', !!targetCatalog);
@@ -137,58 +128,80 @@
         function resetView() {
             console.log('>>> resetView called');
             
-            // Work Experience section'ını göster
             if (experienceSection) {
                 experienceSection.classList.remove('hidden');
                 console.log('>>> Experience section shown');
             }
             
-            // Tüm katalogları gizle
             catalogs.forEach(catalog => {
                 catalog.classList.remove('active');
             });
             console.log('>>> All catalogs hidden');
         }
-async function fetchVisitorCount() {
-    try {
-        const response = await fetch('https://nsrtbstnc.goatcounter.com/counter/nsrtbstnc.json');
-        const data = await response.json();
-        
-        if (data && data.count) {
-            const countElement = document.getElementById('visitorCount');
-            if (countElement) {
-                animateCount(countElement, data.count);
+
+        // =============================================
+        // SUPABASE ZİYARETÇİ SAYACI
+        // =============================================
+        const SUPABASE_URL = 'https://bjdfigdrnrvseklbcwli.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_IwpWn7GCTtjJNsMp2xXV4Q__ilKTT9G';
+
+        async function initVisitorCounter() {
+            try {
+                // Önce sayacı artır
+                await fetch(`${SUPABASE_URL}/rest/v1/rpc/increment_visitor`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': `Bearer ${SUPABASE_KEY}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                // Sonra güncel değeri oku
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/znb_001_counter?id=eq.0&select=count`, {
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': `Bearer ${SUPABASE_KEY}`
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data && data.length > 0) {
+                    const countElement = document.getElementById('visitorCount');
+                    if (countElement) {
+                        animateCount(countElement, data[0].count);
+                    }
+                }
+            } catch (error) {
+                console.log('Visitor counter error:', error);
+                const countElement = document.getElementById('visitorCount');
+                if (countElement) {
+                    countElement.textContent = '---';
+                }
             }
         }
-    } catch (error) {
-        console.log('Visitor count fetch error:', error);
-        const countElement = document.getElementById('visitorCount');
-        if (countElement) {
-            countElement.textContent = '---';
-        }
-    }
-}
 
-function animateCount(element, targetCount) {
-    const duration = 1500;
-    const start = 0;
-    const startTime = performance.now();
-    
-    function update(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        const current = Math.floor(start + (targetCount - start) * easeOutQuart);
-        
-        element.textContent = current.toLocaleString('tr-TR');
-        
-        if (progress < 1) {
+        function animateCount(element, targetCount) {
+            const duration = 1500;
+            const start = 0;
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const current = Math.floor(start + (targetCount - start) * easeOutQuart);
+                
+                element.textContent = current.toLocaleString('tr-TR');
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
             requestAnimationFrame(update);
         }
-    }
-    
-    requestAnimationFrame(update);
-}
 
-// Sayfa yüklendiğinde çalıştır
-document.addEventListener('DOMContentLoaded', fetchVisitorCount);
+        // Sayfa yüklendiğinde çalıştır
+        document.addEventListener('DOMContentLoaded', initVisitorCounter);
